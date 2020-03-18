@@ -1,5 +1,6 @@
-package br.com.zup.order.controller.request;
+package br.com.zup.order.domain;
 
+import br.com.zup.order.enumeration.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateOrderRequest {
+public class CreateOrderDomain {
 
+    private String id;
     private String customerId;
     private BigDecimal amount;
-    private List<CreateOrderItemRequest> items;
+    private OrderStatus status;
+    private List<CreateOrderItemDomain> items;
 }

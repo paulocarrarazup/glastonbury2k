@@ -1,5 +1,6 @@
-package br.com.zup.order.controller.request;
+package br.com.zup.inventory.event.inventory;
 
+import br.com.zup.inventory.enumeration.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreateOrderRequest {
+public class InventoryCreatedEvent {
 
+    private String orderId;
     private String customerId;
     private BigDecimal amount;
-    private List<CreateOrderItemRequest> items;
+    private List<InventoryItemCreatedEvent> items;
+    private OrderStatus status;
 }
