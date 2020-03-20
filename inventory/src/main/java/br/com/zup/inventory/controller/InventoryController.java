@@ -1,6 +1,6 @@
 package br.com.zup.inventory.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.zup.inventory.service.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +15,15 @@ import br.com.zup.inventory.controller.request.BookRequest;
 @RequestMapping("/inventory")
 public class InventoryController implements InventoryApi{
 
-    @Autowired
-    public InventoryController() {
+    private InventoryService inventoryService;
 
+    public InventoryController(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/booking", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void book(@RequestBody BookRequest request) {
-        System.out.println(request.getOrderEntries());
+        System.out.println(request.getItems());
     }
 }

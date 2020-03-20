@@ -6,14 +6,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookRequest {
-    private String customerId;
+public class BookItemRequest {
+
+    private String id;
+    private String name;
     private BigDecimal amount;
-    private List<BookItemRequest> items;
+    private Integer quantity;
 }
