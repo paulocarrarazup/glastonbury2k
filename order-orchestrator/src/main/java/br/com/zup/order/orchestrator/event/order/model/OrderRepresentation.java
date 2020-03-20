@@ -1,5 +1,6 @@
-package br.com.zup.inventory.controller.request;
+package br.com.zup.order.orchestrator.event.order.model;
 
+import br.com.zup.order.orchestrator.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,8 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookRequest {
+public class OrderRepresentation {
+
+    private String orderId;
     private String customerId;
     private BigDecimal amount;
-    private List<BookItemRequest> items;
+    private List<OrderItemRepresentation> items;
+    private OrderStatus status;
 }

@@ -1,5 +1,6 @@
 package br.com.zup.inventory.listener;
 
+import br.com.zup.inventory.configuration.KafkaConfiguration;
 import br.com.zup.inventory.event.order.OrderCreatedEvent;
 import br.com.zup.inventory.event.order.model.OrderRepresentation;
 import br.com.zup.inventory.service.InventoryService;
@@ -11,18 +12,18 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class OrderListener {
+public class InventoryListener {
 
-    private final ObjectMapper objectMapper;
+    private ObjectMapper objectMapper;
     private static final ModelMapper MAPPER = new ModelMapper();
     private InventoryService inventoryService;
 
-    public OrderListener(ObjectMapper objectMapper, InventoryService inventoryService) {
+    public InventoryListener(ObjectMapper objectMapper, InventoryService inventoryService, KafkaConfiguration kafkaConfiguration) {
         this.objectMapper = objectMapper;
         this.inventoryService = inventoryService;
     }
 
-    @KafkaListener(topics = "created-orders", groupId = "inventory-group-id")
+    @KafkaListener(topics = "create-inventory", groupId = KafkaConfiguration.CONSUMER_GROUP)
     public void listen(String message) throws IOException {
         OrderCreatedEvent event = this.objectMapper.readValue(message, OrderCreatedEvent.class);
 

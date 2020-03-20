@@ -20,6 +20,8 @@ import java.util.Map;
 @Configuration
 public class KafkaConfiguration {
 
+    public static final String CONSUMER_GROUP = "order-group-id";
+
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrap;
 
@@ -55,7 +57,7 @@ public class KafkaConfiguration {
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "order-group-id");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP);
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap);
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);

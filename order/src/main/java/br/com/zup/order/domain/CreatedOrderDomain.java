@@ -1,20 +1,23 @@
-package br.com.zup.inventory.controller.request;
+package br.com.zup.order.domain;
 
+import br.com.zup.order.enumeration.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BookItemRequest {
+public class CreatedOrderDomain {
 
     private String id;
-    private String name;
+    private String customerId;
     private BigDecimal amount;
-    private Integer quantity;
+    private OrderStatus status;
+    private List<CreatedOrderItemDomain> items;
 }

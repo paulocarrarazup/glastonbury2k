@@ -10,6 +10,7 @@ import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +19,8 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue
+    private UUID id;
     private String customerId;
     private BigDecimal amount;
 

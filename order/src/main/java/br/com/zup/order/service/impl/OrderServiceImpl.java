@@ -1,12 +1,14 @@
 package br.com.zup.order.service.impl;
 
-import br.com.zup.order.controller.response.OrderResponse;
 import br.com.zup.order.domain.CreateOrderDomain;
 import br.com.zup.order.domain.CreateOrderItemDomain;
+import br.com.zup.order.domain.CreatedOrderDomain;
+import br.com.zup.order.entity.Order;
 import br.com.zup.order.event.order.publisher.OrderCreatedEventPublisher;
 import br.com.zup.order.repository.OrderRepository;
 import br.com.zup.order.service.OrderService;
 import br.com.zup.order.service.translator.CreateOrderDomainToOrderEntityTranslator;
+import br.com.zup.order.service.translator.OrderEntityToCreatedOrderDomainTranslator;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -36,7 +38,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public String save(CreateOrderDomain createOrderDomain) {
-        return this.orderRepository.save(CreateOrderDomainToOrderEntityTranslator.translate(createOrderDomain)).getId();
+        final Order order = CreateOrderDomainToOrderEntityTranslator.translate(createOrderDomain);
+        return this.orderRepository.save(order).getId().toString();
     }
 
     private Map<String, Integer> createItemMap(CreateOrderDomain createOrderDomain) {
@@ -49,10 +52,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponse> findAll() {
+    public List<CreatedOrderDomain> findAll() {
         return this.orderRepository.findAll()
                 .stream()
-                .map(OrderResponse::fromEntity)
+                .map(OrderEntityToCreatedOrderDomainTranslator::translate)
                 .collect(Collectors.toList());
     }
 }
