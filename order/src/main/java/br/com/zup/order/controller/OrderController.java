@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -26,16 +27,22 @@ public class OrderController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String create(@RequestBody CreateOrderRequest request) {
+    public UUID create(@RequestBody CreateOrderRequest request) {
         return this.orderService.create(CreateOrderRequestToCreateOrderDomainTranslator.translate(request));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping
     public List<OrderResponse> getOrders() {
         return this.orderService.findAll()
                 .stream()
                 .map(CreatedOrderDomainToOrderResponseTranslator::translate)
                 .collect(Collectors.toList());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path = "/{id}")
+    public OrderResponse getOrderById(@PathVariable("id") final UUID id) {
+        return CreatedOrderDomainToOrderResponseTranslator.translate(this.orderService.findById(id));
     }
 }

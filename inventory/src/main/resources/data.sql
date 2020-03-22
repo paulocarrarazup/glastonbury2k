@@ -1,1 +1,1 @@
-insert into inventory (item_id, quantity) values ('3852cb18-9c19-4326-ac77-a1a0264bd98c', 10);
+insert into t_inventory (item_id, quantity) values ('3852cb18-9c19-4326-ac77-a1a0264bd98c', 10);

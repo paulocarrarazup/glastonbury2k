@@ -4,12 +4,17 @@ import br.com.zup.order.domain.CreateOrderDomain;
 import br.com.zup.order.domain.CreatedOrderDomain;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface OrderService {
 
-    String create(CreateOrderDomain createOrderDomain);
+    UUID create(CreateOrderDomain createOrderDomain);
 
     List<CreatedOrderDomain> findAll();
 
-    String save(CreateOrderDomain createOrderDomain);
+    UUID save(CreateOrderDomain createOrderDomain);
+
+    UUID update(CreateOrderDomain createOrderDomain);
+
+    CreatedOrderDomain findById(UUID orderId);
 }

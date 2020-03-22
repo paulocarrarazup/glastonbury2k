@@ -1,21 +1,21 @@
-package br.com.zup.order.entity;
+package br.com.zup.order.gateway.database.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "orders")
+@Builder
+@Entity(name = "t_order")
 public class Order {
 
     @Id
@@ -29,4 +29,7 @@ public class Order {
     private List<OrderItem> items;
 
     private String status;
+
+    @CreationTimestamp
+    private Date createdAt;
 }

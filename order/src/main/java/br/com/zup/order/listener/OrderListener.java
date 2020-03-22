@@ -25,7 +25,7 @@ public class OrderListener {
     public void listen(String message) throws IOException {
         InventoryRejectedEvent event = this.objectMapper.readValue(message, InventoryRejectedEvent.class);
 
-        orderService.save(InventoryRejectedEventToCreateOrderDomain.translate(event));
+        orderService.update(InventoryRejectedEventToCreateOrderDomain.translate(event));
         System.out.println("Received event OrderListener Order Rejected: " + event.getCustomerId());
     }
 }

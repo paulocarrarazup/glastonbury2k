@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import java.util.Map;
 @Builder
 public class OrderCreatedEvent {
 
-    private String orderId;
+    private UUID orderId;
     private String customerId;
     private BigDecimal amount;
     private List<OrderCreatedItemEvent> items;

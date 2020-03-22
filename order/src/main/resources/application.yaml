@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/order_database
+    driver-class-name: org.postgresql.Driver
+    username: tech_lead
+    password: tech_lead
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  kafka:
+    bootstrap-servers: localhost:9092,localhost:29092

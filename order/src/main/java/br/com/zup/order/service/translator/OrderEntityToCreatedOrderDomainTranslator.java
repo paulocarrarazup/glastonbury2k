@@ -2,8 +2,8 @@ package br.com.zup.order.service.translator;
 
 import br.com.zup.order.domain.CreatedOrderDomain;
 import br.com.zup.order.domain.CreatedOrderItemDomain;
-import br.com.zup.order.entity.Order;
-import br.com.zup.order.entity.OrderItem;
+import br.com.zup.order.gateway.database.entity.Order;
+import br.com.zup.order.gateway.database.entity.OrderItem;
 import lombok.experimental.UtilityClass;
 import org.modelmapper.ModelMapper;
 
